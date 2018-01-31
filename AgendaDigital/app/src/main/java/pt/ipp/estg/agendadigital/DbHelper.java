@@ -19,7 +19,6 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASS = "password";
-    public static final String COLUMN_EMAIL = "email";
 
     /**
      * Cria tabela Users(
@@ -28,7 +27,7 @@ public class DbHelper extends SQLiteOpenHelper{
      * password text);
      */
     public static final String CREATE_TABLE_USERS = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_USERNAME + " TEXT," + COLUMN_EMAIL + " TEXT,"+ COLUMN_PASS + " TEXT);";
+            + COLUMN_USERNAME + " TEXT," + COLUMN_PASS + " TEXT);";
 
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -49,13 +48,12 @@ public class DbHelper extends SQLiteOpenHelper{
      +     * Storing user details in database
      +     * */
 
-    public void addUser(String username, String password, String email) {
+    public void addUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
        ContentValues values = new ContentValues();
        values.put(COLUMN_USERNAME, username);
        values.put(COLUMN_PASS, password);
-       values.put(COLUMN_EMAIL, email);
 
                long id = db.insert(USER_TABLE, null, values);
             db.close();
@@ -63,10 +61,10 @@ public class DbHelper extends SQLiteOpenHelper{
            Log.d(TAG, "Registado com Sucesso!" + id);
        }
 
-  public boolean getUser(String username, String pass, String mail){
+  public boolean getUser(String username, String pass){
      //HashMap<String, String> user = new HashMap<String, String>();
       String selectQuery = "select * from  " + USER_TABLE + " where " +
-              COLUMN_USERNAME + " = " + "'"+ username +"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'" + " and " + COLUMN_EMAIL + " = " + "'"+mail+"'";
+              COLUMN_USERNAME + " = " + "'"+ username +"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
 
       SQLiteDatabase db = this.getReadableDatabase();
       Cursor cursor = db.rawQuery(selectQuery, null);

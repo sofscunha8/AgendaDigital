@@ -72,22 +72,6 @@
         android:inputType="textPassword"
         android:text="Password" />
 
-    <EditText
-        android:id="@+id/confPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Password"
-        android:textColorHint="@color/white"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:text="Confirmar Password" />
-
-
     <Button
         android:id="@+id/btnRegisto"
         android:layout_width="match_parent"
