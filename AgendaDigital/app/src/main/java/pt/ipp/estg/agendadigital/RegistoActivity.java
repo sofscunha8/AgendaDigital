@@ -12,8 +12,11 @@ import android.widget.Toast;
 public class RegistoActivity extends AppCompatActivity implements View.OnClickListener{
     private Button registo;
     private TextView tvLogin;
-    private EditText etUsername, etEmail, etPassword, confPassword, etEmail;
+    private EditText etUsername, etEmail, etPassword, confPassword;
     private DbHelper db;
+
+    public RegistoActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +52,21 @@ public class RegistoActivity extends AppCompatActivity implements View.OnClickLi
         String username = etUsername.getText().toString();
         String pass = etPassword.getText().toString();
         String email = etEmail.getText().toString();
+        String confPass = confPassword.getText().toString();
         if(username.isEmpty() && pass.isEmpty()){
             displayToast("Username/Password field empty");
         }else{
-            db.addUser(username, pass, email);
-            displayToast("User Registado");
-                    finish();
+            if(pass.equals(confPass)){
+                
+                  db.addUser(username, pass, email);
+                  displayToast("User Registado");
+                  finish();
+
+
+            }else{
+                displayToast("Confirmar Password incorreto!");
+            }
+
         }
     }
 
