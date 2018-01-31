@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private Button login, registar;
-    private EditText etUsername, etPassword;
+    private EditText etUsername, etPassword, etEmail;
     private DbHelper db;
     private Session session;
 
@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         db = new DbHelper(this);
         login = findViewById(R.id.btnLogin);
         registar = findViewById(R.id.btnRegisto);
-        etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
+        etEmail = findViewById(R.id.etEmail);
         login.setOnClickListener(this);
         registar.setOnClickListener(this);
 
@@ -49,10 +49,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void login(){
-        String username = etUsername.getText().toString();
         String pass = etPassword.getText().toString();
-
-        if(db.getUser(username, pass)){
+        String mail = etEmail.getText().toString();
+        if(db.getUser(pass, mail)){
             session.setLoggedin(true);
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();

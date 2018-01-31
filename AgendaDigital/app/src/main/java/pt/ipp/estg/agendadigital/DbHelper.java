@@ -61,10 +61,17 @@ public class DbHelper extends SQLiteOpenHelper{
            Log.d(TAG, "Registado com Sucesso!" + id);
        }
 
+<<<<<<< HEAD
   public boolean getUser(String username, String pass){
      //HashMap<String, String> user = new HashMap<String, String>();
       String selectQuery = "select * from  " + USER_TABLE + " where " +
               COLUMN_USERNAME + " = " + "'"+ username +"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
+=======
+  public boolean getUser(String pass, String mail){
+     //HashMap<String, String> user = new HashMap<String, String>();
+      String selectQuery = "select * from  " + USER_TABLE + " where " +
+              COLUMN_EMAIL + " = " + "'"+ mail +"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
+>>>>>>> 982b2760bcf216628ab147bbd20463c3b9a73332
 
       SQLiteDatabase db = this.getReadableDatabase();
       Cursor cursor = db.rawQuery(selectQuery, null);
@@ -79,4 +86,19 @@ public class DbHelper extends SQLiteOpenHelper{
 
       return false;
            }
+
+    public boolean compareEmail(String mail){
+        String selectQueryEmail = "select * from  " + USER_TABLE + " where " + COLUMN_EMAIL + " = " + "'"+ mail +"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQueryEmail, null);
+        cursor.moveToFirst();
+      if(cursor!=null){
+          return false;
+      }else{
+          return true;
+      }
+
+    }
 }
+
+
